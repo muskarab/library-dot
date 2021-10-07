@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class BookController extends Controller
 {
@@ -14,7 +17,10 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json([
+            'message' => 'Halaman index Book',
+            'data_book' => Book::all()
+        ], 200);
     }
 
     /**
@@ -24,7 +30,9 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return response()->json([
+            'message' => 'Halaman create Book',
+        ], 200);
     }
 
     /**
@@ -35,7 +43,38 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => ['required'],
+            'image' => request('image') ? ['image', 'mimes:jpg,jpeg,png'] : '',
+            'content' => ['required'],
+            'page' => ['required']
+        ]);
+
+        //upload image
+        $image = $request->file('image');
+        $image->storeAs('public/books', $image->hashName());
+
+        $book = Book::create([
+            'title' => request('title'),
+            'author_id' => request('author'),
+            'slug' => Str::slug(request('title')),
+            // 'img' => request()->file('image')->store('images/book'),
+            'img' => $image->hashName(),
+            // 'img' => request('image'),
+            'content' => request('content'),
+            'page' => request('page'),
+        ]);
+        // dd($request->all());
+        if ($book) {
+            return response()->json([
+                'message' => 'Book berhasil ditambah',
+                'data_author' => $book
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Invalid',
+            ], 400);
+        }
     }
 
     /**
@@ -44,9 +83,19 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Book $book)
     {
-        //
+        $book = Book::findOrFail($book->id);
+        if ($book) {
+            return response()->json([
+                'message' => 'Success',
+                'data_author' => $book
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Invalid'
+            ], 400);
+        }
     }
 
     /**
@@ -67,9 +116,55 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Book $book)
     {
-        //
+        $request->validate([
+            'title' => ['required'],
+            'img' => request('image') ? ['image', 'mimes:jpg,jpeg,png'] : '',
+            'content' => ['required'],
+            'page' => ['required']
+        ]);
+
+        $book = Book::findOrFail($book->id);
+
+        if ($request->file('image') == "") {
+            $book->update([
+                'title' => request('title'),
+                'slug' => Str::slug(request('title')),
+                'author_id' => request('author'),
+                'publisher_id' => request('publisher'),
+                'content' => request('content'),
+                'page' => request('page'),
+            ]);
+        } else {
+            //hapus old image
+            Storage::disk('local')->delete('public/books/' . $book->img);
+
+            //upload new image
+            $image = $request->file('image');
+            $image->storeAs('public/books', $image->hashName());
+
+            $book->update([
+                'title' => request('title'),
+                'author_id' => request('author'),
+                'publisher_id' => request('publisher'),
+                'slug' => Str::slug(request('title')),
+                'img' => $image->hashName(),
+                'content' => request('content'),
+                'page' => request('page'),
+            ]);
+        };
+
+        if ($book) {
+            return response()->json([
+                'message' => 'Book berhasil diupdate',
+                'data_author' => $book
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Invalid',
+            ], 400);
+        }
     }
 
     /**
@@ -78,8 +173,18 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Book $book)
     {
-        //
+        $book->delete();
+        if ($book) {
+            return response()->json([
+                'message' => 'Book berhasil didelete',
+                'data_author' => $book
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Invalid',
+            ], 400);
+        }
     }
 }
