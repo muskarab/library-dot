@@ -31,6 +31,7 @@
             {{-- <th>No.</th> --}}
             <th scope="col">Image</th>
             <th scope="col">Title</th>
+            <th scope="col">Content</th>
             <th scope="col">Author</th>
             <th scope="col">Page</th>
         </tr>
@@ -43,6 +44,7 @@
                 <img src="{{ Storage::url('public/books/'.$book->img) }}" width="100" class="img-thumbnail">
             </th>
             <td><a href="{{ route('book.show', $book->slug) }}" class="text-decoration-none text-dark">{{ $book->title }}</a></td>
+            <td>{{ $book->content }}</td>
             <td>
                 <a href="/dashboard?author={{ $book->author->slug }}" class="text-decoration-none text-dark">{{ $book->author->name }}</a>
             </td>

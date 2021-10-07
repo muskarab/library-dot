@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,3 +27,9 @@ Auth::routes();
 
 Route::get('/', [DashboardController::class, 'index']);
 Route::get('/dashboard', [DashboardController::class, 'index']);
+
+Route::middleware('auth')->group(function () {
+    // Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::resource('book', BookController::class);
+    Route::resource('author', AuthorController::class);
+});

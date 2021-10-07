@@ -17,9 +17,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('author.index') }}">Author</a>
                         </li>
-                        <li class="nav-item">
-                            {{-- <a class="nav-link" href="{{ route('publisher.index') }}">Publisher</a> --}}
-                        </li>
                     </ul>
                     @endauth
 

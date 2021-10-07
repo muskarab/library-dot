@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class AuthorController extends Controller
 {
@@ -14,7 +15,11 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        //
+        $authors = Author::latest()->when(request()->search, function ($authors) {
+            $authors = $authors->where('title', 'like', '%' . request()->search . '%');
+        })->paginate(10);
+
+        return view('author.index', compact('authors'));
     }
 
     /**
@@ -24,7 +29,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        return view('author.create');
     }
 
     /**
@@ -35,7 +40,22 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required']
+        ]);
+
+        $author = Author::create([
+            'name' => request('name'),
+            'slug' => Str::slug(request('name'))
+        ]);
+
+        if ($author) {
+            //redirect dengan pesan sukses
+            return redirect()->route('author.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        } else {
+            //redirect dengan pesan error
+            return redirect()->route('author.index')->with(['error' => 'Data Gagal Disimpan!']);
+        }
     }
 
     /**
@@ -46,7 +66,7 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        //
+        
     }
 
     /**
@@ -57,7 +77,7 @@ class AuthorController extends Controller
      */
     public function edit(Author $author)
     {
-        //
+        return view('author.edit', compact('author'));
     }
 
     /**
@@ -69,7 +89,22 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
-        //
+        $request->validate([
+            'name' => ['required']
+        ]);
+
+        $author = Author::findOrFail($author->id);
+        $author->update([
+            'name' => request('name'),
+            'slug' => Str::slug(request('name'))
+        ]);
+        if ($author) {
+            //redirect dengan pesan sukses
+            return redirect()->route('author.index')->with(['success' => 'Data Berhasil Diupdate!']);
+        } else {
+            //redirect dengan pesan error
+            return redirect()->route('author.index')->with(['error' => 'Data Gagal Diupdate!']);
+        }
     }
 
     /**
@@ -80,6 +115,7 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        //
+        $author->delete();
+        return redirect()->route('author.index');
     }
 }
