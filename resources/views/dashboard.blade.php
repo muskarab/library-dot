@@ -44,7 +44,7 @@
                 <img src="{{ Storage::url('public/books/'.$book->img) }}" width="100" class="img-thumbnail">
             </th>
             <td><a href="{{ route('book.show', $book->slug) }}" class="text-decoration-none text-dark">{{ $book->title }}</a></td>
-            <td>{{ $book->content }}</td>
+            <td>{!! $book->content !!}</td>
             <td>
                 <a href="/dashboard?author={{ $book->author->slug }}" class="text-decoration-none text-dark">{{ $book->author->name }}</a>
             </td>

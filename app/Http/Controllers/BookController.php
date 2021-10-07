@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class BookController extends Controller
 {
@@ -14,7 +17,11 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        $books = Book::latest()->when(request()->search, function ($books) {
+            $books = $books->where('title', 'like', '%' . request()->search . '%');
+        })->paginate(10);
+
+        return view('book.index', compact('books'));
     }
 
     /**
@@ -24,7 +31,9 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return view('book.create', [
+            'authors' => Author::get()
+        ]);
     }
 
     /**
@@ -35,7 +44,34 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => ['required'],
+            'image' => request('image') ? ['image', 'mimes:jpg,jpeg,png'] : '',
+            'content' => ['required'],
+            'page' => ['required']
+        ]);
+
+        //upload image
+        $image = $request->file('image');
+        $image->storeAs('public/books', $image->hashName());
+
+        $book = Book::create([
+            'title' => request('title'),
+            'author_id' => request('author'),
+            'slug' => Str::slug(request('title')),
+            // 'img' => request()->file('image')->store('images/book'),
+            'img' => $image->hashName(),
+            'content' => request('content'),
+            'page' => request('page'),
+        ]);
+
+        if ($book) {
+            //redirect dengan pesan sukses
+            return redirect()->route('book.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        } else {
+            //redirect dengan pesan error
+            return redirect()->route('book.index')->with(['error' => 'Data Gagal Disimpan!']);
+        }
     }
 
     /**
@@ -46,7 +82,10 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //
+        return view('book.show',
+            compact('book'),
+            ['authors' => Author::get()]
+        );
     }
 
     /**
@@ -57,7 +96,11 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        return view(
+            'book.edit',
+            compact('book'),
+            ['authors' => Author::get()]
+        );
     }
 
     /**
@@ -69,7 +112,48 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $request->validate([
+            'title' => ['required'],
+            'img' => request('image') ? ['image', 'mimes:jpg,jpeg,png'] : '',
+            'content' => ['required'],
+            'page' => ['required']
+        ]);
+
+        $book = Book::findOrFail($book->id);
+
+        if ($request->file('image') == "") {
+            $book->update([
+                'title' => request('title'),
+                'slug' => Str::slug(request('title')),
+                'author_id' => request('author'),
+                'content' => request('content'),
+                'page' => request('page'),
+            ]);
+        } else {
+            //hapus old image
+            Storage::disk('local')->delete('public/books/' . $book->img);
+
+            //upload new image
+            $image = $request->file('image');
+            $image->storeAs('public/books', $image->hashName());
+
+            $book->update([
+                'title' => request('title'),
+                'author_id' => request('author'),
+                'slug' => Str::slug(request('title')),
+                'img' => $image->hashName(),
+                'content' => request('content'),
+                'page' => request('page'),
+            ]);
+        };
+
+        if ($book) {
+            //redirect dengan pesan sukses
+            return redirect()->route('book.index')->with(['success' => 'Data Berhasil Diupdate!']);
+        } else {
+            //redirect dengan pesan error
+            return redirect()->route('book.index')->with(['error' => 'Data Gagal Diupdate!']);
+        }
     }
 
     /**
@@ -80,6 +164,16 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $book = Book::findOrFail($book->id);
+        Storage::disk('local')->delete('public/books/' . $book->img);
+        $book->delete();
+
+        if ($book) {
+            //redirect dengan pesan sukses
+            return redirect()->route('book.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        } else {
+            //redirect dengan pesan error
+            return redirect()->route('book.index')->with(['error' => 'Data Gagal Dihapus!']);
+        }
     }
 }
