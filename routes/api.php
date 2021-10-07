@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::resource('/book', BookController::class);
+    Route::resource('/author', AuthorController::class);
     Route::get('/logout', [AuthController::class, 'logout']);
 });
 Route::post('/login', [AuthController::class, 'login']);
