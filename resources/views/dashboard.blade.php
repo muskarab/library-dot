@@ -34,6 +34,7 @@
             <th scope="col">Content</th>
             <th scope="col">Author</th>
             <th scope="col">Page</th>
+            <th scope="col">Date</th>
         </tr>
     </thead>
     <tbody>
@@ -43,12 +44,17 @@
             <th>
                 <img src="{{ Storage::url('public/books/'.$book->img) }}" width="100" class="img-thumbnail">
             </th>
-            <td><a href="{{ route('book.show', $book->slug) }}" class="text-decoration-none text-dark">{{ $book->title }}</a></td>
+            <td>
+                {{-- <a href="{{ route('book.show', $book->slug) }}" class="text-decoration-none text-dark"> --}}
+                    {{ $book->title }}
+                {{-- </a> --}}
+            </td>
             <td>{!! $book->content !!}</td>
             <td>
                 <a href="/dashboard?author={{ $book->author->slug }}" class="text-decoration-none text-dark">{{ $book->author->name }}</a>
             </td>
             <td>{{ $book->page }}</td>
+            <td>{{ $book->created_at }}</td>
         </tr>
         @empty
             

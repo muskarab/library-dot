@@ -17,6 +17,7 @@
             <th scope="col">Title</th>
             <th scope="col">Content</th>
             <th scope="col">Page</th>
+            {{-- <th scope="col">Date</th> --}}
             <th scope="col">Action</th>
         </tr>
     </thead>
@@ -30,6 +31,7 @@
             <td>{{ $book->title }}</td>
             <td>{!! $book->content !!}</td>
             <td>{{ $book->page }}</td>
+            {{-- <td>{{ $book->created_at }}</td> --}}
             <td>
                 <form action="{{ route('book.destroy', $book->slug) }}" method="POST">
                     <a href="{{ route('book.show', $book->slug) }}" class="btn btn-outline-primary btn-sm">Show</a>

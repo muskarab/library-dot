@@ -28,4 +28,13 @@ class DashboardController extends Controller
             "books" => Book::latest()->filter(request(['title', 'author']))->paginate(10)->withQueryString()
         ]);
     }
+
+    public function show(Book $book)
+    {
+        return view(
+            'book.show',
+            compact('book'),
+            ['authors' => Author::get()]
+        );
+    }
 }
