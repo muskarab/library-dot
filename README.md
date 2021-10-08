@@ -56,6 +56,14 @@ user : admin@gmail.com
 pass : admin123
 ```
 
+## Screen Shoot DB
+
+![alt text](https://github.com/muskarab/library-dot/blob/master/ERD.png)
+## Screen Shoot App
+
+![alt text](https://github.com/muskarab/library-dot/blob/master/dashboard.png)
+![alt text](https://github.com/muskarab/library-dot/blob/master/admin.png)
+![alt text](https://github.com/muskarab/library-dot/blob/master/mobile.png)
 ## Further Ideas
 
 1. Bisa membaca buku secara online
