@@ -45,8 +45,28 @@
                 <div class="mt-2 text-danger">{{ $message }}</div>
             @enderror
         </div>
+        <div class="form-group">
+            <label for="date">Date</label>
+            <input class="datepicker" name="date" data-date-format="yyyy-mm-dd">
+            {{-- <input type="text" name="date" id="date" placeholder="MM/DD/YYY" class="form-control" required>
+                @error('page')
+                <div class="mt-2 text-danger">{{ $message }}</div>
+            @enderror --}}
+        </div>
+        {{-- <div class="input-group date" data-provide="datepicker">
+            <input type="text" class="form-control" name="date">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-th"></span>
+            </div>
+        </div> --}}
         <button type="submit" class="btn btn-primary">Create</button>
         <a href="{{ route('book.index') }}" class="btn btn-primary">Back</a>
     </form>
 </div>
+<script>
+   $('.datepicker').datepicker({
+    format: 'yyyy-mm-dd',
+    startDate: '-3d'
+});
+</script>
 @endsection

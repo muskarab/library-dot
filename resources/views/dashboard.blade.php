@@ -54,7 +54,7 @@
                 <a href="/dashboard?author={{ $book->author->slug }}" class="text-decoration-none text-dark">{{ $book->author->name }}</a>
             </td>
             <td>{{ $book->page }}</td>
-            <td>{{ $book->created_at }}</td>
+            <td>{{ $book->date }}</td>
         </tr>
         @empty
             

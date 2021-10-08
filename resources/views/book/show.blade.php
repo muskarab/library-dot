@@ -18,6 +18,6 @@
     <h5>Page:</h5>
     <input class="form-control" type="text" placeholder="{{ $book->page }}" aria-label="Disabled input example" disabled>
     <h5>Date:</h5>
-    <input class="form-control" type="text" placeholder="{{ $book->created_at }}" aria-label="Disabled input example" disabled>
+    <input class="form-control" type="text" placeholder="{{ $book->date }}" aria-label="Disabled input example" disabled>
     <a class="btn btn-primary" href="{{ route('book.index') }}"> Back</a>
 @endsection

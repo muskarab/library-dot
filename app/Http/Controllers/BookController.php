@@ -55,6 +55,8 @@ class BookController extends Controller
         $image = $request->file('image');
         $image->storeAs('public/books', $image->hashName());
 
+        // dd($request->all());
+
         $book = Book::create([
             'title' => request('title'),
             'author_id' => request('author'),
@@ -63,6 +65,7 @@ class BookController extends Controller
             'img' => $image->hashName(),
             'content' => request('content'),
             'page' => request('page'),
+            'date' => request('date'),
         ]);
 
         if ($book) {
