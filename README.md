@@ -55,6 +55,11 @@ And Login Admin.
 user : admin@gmail.com
 pass : admin123
 ```
+
+## Further Ideas
+
+1. Bisa membaca buku secara online
+2. Bisa mendownload buku
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

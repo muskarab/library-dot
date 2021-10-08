@@ -1,0 +1,1173 @@
+{
+	"info": {
+		"_postman_id": "5b455a92-16f2-4c6a-b68f-52c9d42616a6",
+		"name": "Perpustakaan-API",
+		"description": "Dokumentasi API Perpustakaan, Login admin untuk kelola data book dan author, User dapat melalukan pencarian book berdasarkan title atau author",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "All Book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://library-dot.test/api/book",
+							"protocol": "http",
+							"host": [
+								"library-dot",
+								"test"
+							],
+							"path": [
+								"api",
+								"book"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "All Book",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://perpustakaan-dot.test/api/book",
+									"protocol": "http",
+									"host": [
+										"perpustakaan-dot",
+										"test"
+									],
+									"path": [
+										"api",
+										"book"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.19.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.22"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 07 Oct 2021 07:28:01 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Halaman index Book\",\n    \"data_book\": [\n        {\n            \"id\": 5,\n            \"author_id\": 7,\n            \"title\": \"Garis Waktu\",\n            \"slug\": \"garis-waktu\",\n            \"img\": \"IhXENVWusF7TP0Gnnj3ImLD4ZQMDZY5h3gYhwUJx.jpg\",\n            \"content\": \"Buku Fiersa Besari yang tidak kalah menarik adalah buku garis waktu. Buku ini ditulis berdasarkan rangkuman kisah penulis selama 4 tahun loh. Isi bukunya menceritakan bagaimana rasanya berjumlah, kemudian merasakan jatuh cinta dengan pujaan hati.\\n\\nDi bab selanjutnya juga akan diulas bagaimana rasa kecewa akan cinta yang dielu-elukan. Karena berbicara cinta memang tidak seperti mencicip madu yang manisnya keterusan. Cinta itu memang ada pahit, asin, asem dan sepahit-pahitnya rasa pahit. DImana pahitnya sampai membuat seseorang melakukan hal-hal bodoh dan membayakan nyawanya.\\n\\nNah buku Fiersa Besari pun juga menceritakan tentang bagaimana rasanya patah hati dan cara bisa merelakan apa yang dimilikinya. Memang tidaklah mudah merelakan sesuatu yang sudah menjadi bagian hidup untuk orang lain. Sebelum akhirnya memutuskan untuk menjadikan sebuah kenangan dan ingatan saja.\",\n            \"page\": 60,\n            \"created_at\": \"2021-10-07T07:11:17.000000Z\",\n            \"updated_at\": \"2021-10-07T07:11:17.000000Z\",\n            \"author\": {\n                \"id\": 7,\n                \"name\": \"Fiersa Besari\",\n                \"slug\": \"fiersa-besari\",\n                \"created_at\": \"2021-10-07T06:56:04.000000Z\",\n                \"updated_at\": \"2021-10-07T06:56:04.000000Z\"\n            }\n        },\n        {\n            \"id\": 6,\n            \"author_id\": 8,\n            \"title\": \"The Book of Almost\",\n            \"slug\": \"the-book-of-almost\",\n            \"img\": \"2o20l0lrH7X1SDnxNz8eKs9U58pWgRRHuBLiuFon.jpg\",\n            \"content\": \"The Book Of Almost, terbit dua tahun lalu, yakni tahun 2018. Buku ini berisikan kumpulan puisi yang kebanyakan temanya adalah sebuah percintaan yang hanya sebatas kata \\\"hampir\\\". Ketika menjalin sebuah hubungan yang \\\"hampir\\\" terjadi, \\\"hampir\\\" berhasil.\",\n            \"page\": 50,\n            \"created_at\": \"2021-10-07T07:12:28.000000Z\",\n            \"updated_at\": \"2021-10-07T07:12:28.000000Z\",\n            \"author\": {\n                \"id\": 8,\n                \"name\": \"Brian Khrisna\",\n                \"slug\": \"brian-khrisna\",\n                \"created_at\": \"2021-10-07T07:02:11.000000Z\",\n                \"updated_at\": \"2021-10-07T07:02:11.000000Z\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Book by Title",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://library-dot.test/api/book/{slug}",
+							"protocol": "http",
+							"host": [
+								"library-dot",
+								"test"
+							],
+							"path": [
+								"api",
+								"book",
+								"{slug}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Book by Title",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://perpustakaan-dot.test/api/book/garis-waktu",
+									"protocol": "http",
+									"host": [
+										"perpustakaan-dot",
+										"test"
+									],
+									"path": [
+										"api",
+										"book",
+										"garis-waktu"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.19.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.22"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 07 Oct 2021 07:31:19 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Success\",\n    \"data_author\": {\n        \"id\": 5,\n        \"author_id\": 7,\n        \"title\": \"Garis Waktu\",\n        \"slug\": \"garis-waktu\",\n        \"img\": \"IhXENVWusF7TP0Gnnj3ImLD4ZQMDZY5h3gYhwUJx.jpg\",\n        \"content\": \"Buku Fiersa Besari yang tidak kalah menarik adalah buku garis waktu. Buku ini ditulis berdasarkan rangkuman kisah penulis selama 4 tahun loh. Isi bukunya menceritakan bagaimana rasanya berjumlah, kemudian merasakan jatuh cinta dengan pujaan hati.\\n\\nDi bab selanjutnya juga akan diulas bagaimana rasa kecewa akan cinta yang dielu-elukan. Karena berbicara cinta memang tidak seperti mencicip madu yang manisnya keterusan. Cinta itu memang ada pahit, asin, asem dan sepahit-pahitnya rasa pahit. DImana pahitnya sampai membuat seseorang melakukan hal-hal bodoh dan membayakan nyawanya.\\n\\nNah buku Fiersa Besari pun juga menceritakan tentang bagaimana rasanya patah hati dan cara bisa merelakan apa yang dimilikinya. Memang tidaklah mudah merelakan sesuatu yang sudah menjadi bagian hidup untuk orang lain. Sebelum akhirnya memutuskan untuk menjadikan sebuah kenangan dan ingatan saja.\",\n        \"page\": 60,\n        \"created_at\": \"2021-10-07T07:11:17.000000Z\",\n        \"updated_at\": \"2021-10-07T07:11:17.000000Z\",\n        \"author\": {\n            \"id\": 7,\n            \"name\": \"Fiersa Besari\",\n            \"slug\": \"fiersa-besari\",\n            \"created_at\": \"2021-10-07T06:56:04.000000Z\",\n            \"updated_at\": \"2021-10-07T06:56:04.000000Z\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Apel Emas",
+									"type": "text"
+								},
+								{
+									"key": "author",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "9786020652689_APEL_EMAS_HC_C_1_4-1.jpg"
+								},
+								{
+									"key": "content",
+									"value": "Tahukah kalian buah paling berharga di seluruh muka Bumi? Jawabannya adalah: Apel Emas. Apel Emas adalah mahkota seluruh buah. Raja dari raja segala jenis buah. Bentuknya seperti apel biasa, tapi warnanya emas. Sebutir apel emas tidak hanya mengenyangkan, tapi juga menyembuhkan penyakit apa pun yang diderita manusia. Dan jika orang yang memakannya tidak sedang sakit, mengunyah apel emas akan memberikan rasa bahagia, damai, serta tenteram. Tapi Apel Emas tidak sembarang tumbuh. Dia adalah hasil perjuangan sekelompok manusia yang yang amat menyayangi hutan, sungai, dan danau. Tidak merusaknya. Apakah kau juga mau menikmati Apel Emas? Jika demikian, mari kita sayangi lingkungan sekitar.",
+									"type": "text"
+								},
+								{
+									"key": "page",
+									"value": "72",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://library-dot.test/api/book/",
+							"protocol": "http",
+							"host": [
+								"library-dot",
+								"test"
+							],
+							"path": [
+								"api",
+								"book",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Book",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "Apel Emas",
+											"type": "text"
+										},
+										{
+											"key": "author",
+											"value": "9",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "9786020652689_APEL_EMAS_HC_C_1_4-1.jpg"
+										},
+										{
+											"key": "content",
+											"value": "Tahukah kalian buah paling berharga di seluruh muka Bumi? Jawabannya adalah: Apel Emas. Apel Emas adalah mahkota seluruh buah. Raja dari raja segala jenis buah. Bentuknya seperti apel biasa, tapi warnanya emas. Sebutir apel emas tidak hanya mengenyangkan, tapi juga menyembuhkan penyakit apa pun yang diderita manusia. Dan jika orang yang memakannya tidak sedang sakit, mengunyah apel emas akan memberikan rasa bahagia, damai, serta tenteram. Tapi Apel Emas tidak sembarang tumbuh. Dia adalah hasil perjuangan sekelompok manusia yang yang amat menyayangi hutan, sungai, dan danau. Tidak merusaknya. Apakah kau juga mau menikmati Apel Emas? Jika demikian, mari kita sayangi lingkungan sekitar.",
+											"type": "text"
+										},
+										{
+											"key": "page",
+											"value": "72",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://perpustakaan-dot.test/api/book/",
+									"protocol": "http",
+									"host": [
+										"perpustakaan-dot",
+										"test"
+									],
+									"path": [
+										"api",
+										"book",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.19.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.22"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 07 Oct 2021 09:01:24 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Book berhasil ditambah\",\n    \"data_author\": {\n        \"title\": \"Apel Emas\",\n        \"author_id\": \"9\",\n        \"slug\": \"apel-emas\",\n        \"img\": \"mauLsvkbyiZ9MelHcPGRpUtVN6q2iqKArqFLgj9z.jpg\",\n        \"content\": \"Tahukah kalian buah paling berharga di seluruh muka Bumi? Jawabannya adalah: Apel Emas. Apel Emas adalah mahkota seluruh buah. Raja dari raja segala jenis buah. Bentuknya seperti apel biasa, tapi warnanya emas. Sebutir apel emas tidak hanya mengenyangkan, tapi juga menyembuhkan penyakit apa pun yang diderita manusia. Dan jika orang yang memakannya tidak sedang sakit, mengunyah apel emas akan memberikan rasa bahagia, damai, serta tenteram. Tapi Apel Emas tidak sembarang tumbuh. Dia adalah hasil perjuangan sekelompok manusia yang yang amat menyayangi hutan, sungai, dan danau. Tidak merusaknya. Apakah kau juga mau menikmati Apel Emas? Jika demikian, mari kita sayangi lingkungan sekitar.\",\n        \"page\": \"72\",\n        \"updated_at\": \"2021-10-07T09:01:24.000000Z\",\n        \"created_at\": \"2021-10-07T09:01:24.000000Z\",\n        \"id\": 8\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"\",\r\n    \"author\":,\r\n    \"image\":\"\",\r\n    \"content\":\"\",\r\n    \"page\":\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://library-dot.test/api/book/{slug}",
+							"protocol": "http",
+							"host": [
+								"library-dot",
+								"test"
+							],
+							"path": [
+								"api",
+								"book",
+								"{slug}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://library-dot.test/api/book/{slug}",
+							"protocol": "http",
+							"host": [
+								"library-dot",
+								"test"
+							],
+							"path": [
+								"api",
+								"book",
+								"{slug}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Book",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://perpustakaan-dot.test/api/book/{slug}",
+									"protocol": "http",
+									"host": [
+										"perpustakaan-dot",
+										"test"
+									],
+									"path": [
+										"api",
+										"book",
+										"{slug}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.19.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.22"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 07 Oct 2021 09:04:19 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Book berhasil didelete\",\n    \"data_author\": {\n        \"id\": 8,\n        \"author_id\": 9,\n        \"title\": \"Apel Emas\",\n        \"slug\": \"apel-emas\",\n        \"img\": \"mauLsvkbyiZ9MelHcPGRpUtVN6q2iqKArqFLgj9z.jpg\",\n        \"content\": \"Tahukah kalian buah paling berharga di seluruh muka Bumi? Jawabannya adalah: Apel Emas. Apel Emas adalah mahkota seluruh buah. Raja dari raja segala jenis buah. Bentuknya seperti apel biasa, tapi warnanya emas. Sebutir apel emas tidak hanya mengenyangkan, tapi juga menyembuhkan penyakit apa pun yang diderita manusia. Dan jika orang yang memakannya tidak sedang sakit, mengunyah apel emas akan memberikan rasa bahagia, damai, serta tenteram. Tapi Apel Emas tidak sembarang tumbuh. Dia adalah hasil perjuangan sekelompok manusia yang yang amat menyayangi hutan, sungai, dan danau. Tidak merusaknya. Apakah kau juga mau menikmati Apel Emas? Jika demikian, mari kita sayangi lingkungan sekitar.\",\n        \"page\": 72,\n        \"created_at\": \"2021-10-07T09:01:24.000000Z\",\n        \"updated_at\": \"2021-10-07T09:01:24.000000Z\",\n        \"author\": {\n            \"id\": 9,\n            \"name\": \"Tere Liye\",\n            \"slug\": \"tere-liye\",\n            \"created_at\": \"2021-10-07T07:15:29.000000Z\",\n            \"updated_at\": \"2021-10-07T07:15:29.000000Z\"\n        }\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Author",
+			"item": [
+				{
+					"name": "All Author",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://library-dot.test/api/author",
+							"protocol": "http",
+							"host": [
+								"library-dot",
+								"test"
+							],
+							"path": [
+								"api",
+								"author"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "All Author",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://library-dot.test/api/author",
+									"protocol": "http",
+									"host": [
+										"library-dot",
+										"test"
+									],
+									"path": [
+										"api",
+										"author"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.19.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.22"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 07 Oct 2021 13:56:11 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "55"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Halaman index Author\",\n    \"data_author\": [\n        {\n            \"id\": 2,\n            \"name\": \"Tere Liye\",\n            \"slug\": \"tere-liye\",\n            \"created_at\": \"2021-10-07T13:54:33.000000Z\",\n            \"updated_at\": \"2021-10-07T13:54:33.000000Z\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Fiersa Besari\",\n            \"slug\": \"fiersa-besari\",\n            \"created_at\": \"2021-10-07T13:55:02.000000Z\",\n            \"updated_at\": \"2021-10-07T13:55:02.000000Z\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Brian Khrisna\",\n            \"slug\": \"brian-khrisna\",\n            \"created_at\": \"2021-10-07T13:55:54.000000Z\",\n            \"updated_at\": \"2021-10-07T13:55:54.000000Z\"\n        },\n        {\n            \"id\": 5,\n            \"name\": \"Raditya Dika\",\n            \"slug\": \"raditya-dika\",\n            \"created_at\": \"2021-10-07T13:56:08.000000Z\",\n            \"updated_at\": \"2021-10-07T13:56:08.000000Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Author by Name",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://library-dot.test/api/author/{slug}",
+							"protocol": "http",
+							"host": [
+								"library-dot",
+								"test"
+							],
+							"path": [
+								"api",
+								"author",
+								"{slug}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Author by Name",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://library-dot.test/api/author/{slug}",
+									"protocol": "http",
+									"host": [
+										"library-dot",
+										"test"
+									],
+									"path": [
+										"api",
+										"author",
+										"{slug}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.19.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.22"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 07 Oct 2021 13:56:32 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "54"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Success\",\n    \"data_author\": {\n        \"id\": 3,\n        \"name\": \"Fiersa Besari\",\n        \"slug\": \"fiersa-besari\",\n        \"created_at\": \"2021-10-07T13:55:02.000000Z\",\n        \"updated_at\": \"2021-10-07T13:55:02.000000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Author",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Raditya DIka",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://library-dot.test/api/author/",
+							"protocol": "http",
+							"host": [
+								"library-dot",
+								"test"
+							],
+							"path": [
+								"api",
+								"author",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Author",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "",
+											"type": "text"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://perpustakaan-dot.test/api/author/",
+									"protocol": "http",
+									"host": [
+										"perpustakaan-dot",
+										"test"
+									],
+									"path": [
+										"api",
+										"author",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.19.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.22"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 07 Oct 2021 09:05:34 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Author berhasil ditambah\",\n    \"data_author\": {\n        \"name\": \"Raditya DIka\",\n        \"slug\": \"raditya-dika\",\n        \"updated_at\": \"2021-10-07T09:05:33.000000Z\",\n        \"created_at\": \"2021-10-07T09:05:33.000000Z\",\n        \"id\": 11\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Author",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://library-dot.test/api/author/{slug}",
+							"protocol": "http",
+							"host": [
+								"library-dot",
+								"test"
+							],
+							"path": [
+								"api",
+								"author",
+								"{slug}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Author",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://library-dot.test/api/author/{slug}",
+							"protocol": "http",
+							"host": [
+								"library-dot",
+								"test"
+							],
+							"path": [
+								"api",
+								"author",
+								"{slug}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://library-dot.test/api/login?email=muskarab@gmail.com&password=Muskarab15",
+					"protocol": "http",
+					"host": [
+						"library-dot",
+						"test"
+					],
+					"path": [
+						"api",
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "muskarab@gmail.com"
+						},
+						{
+							"key": "password",
+							"value": "Muskarab15"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://library-dot.test/api/logout",
+					"protocol": "http",
+					"host": [
+						"library-dot",
+						"test"
+					],
+					"path": [
+						"api",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dashboard",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://library-dot.test/api/dashboard?author=&title=",
+					"protocol": "http",
+					"host": [
+						"library-dot",
+						"test"
+					],
+					"path": [
+						"api",
+						"dashboard"
+					],
+					"query": [
+						{
+							"key": "author",
+							"value": ""
+						},
+						{
+							"key": "title",
+							"value": ""
+						}
+					]
+				},
+				"description": "Pada API ini digunakan untuk pencarian buku berdasarkan judul buku atau nama author"
+			},
+			"response": [
+				{
+					"name": "Dashboard",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://perpustakaan-dot.test/api/dashboard?author=fiersa-besari&title=garis-waktu",
+							"protocol": "http",
+							"host": [
+								"perpustakaan-dot",
+								"test"
+							],
+							"path": [
+								"api",
+								"dashboard"
+							],
+							"query": [
+								{
+									"key": "author",
+									"value": "fiersa-besari"
+								},
+								{
+									"key": "title",
+									"value": "garis-waktu"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.19.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.22"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 07 Oct 2021 08:53:49 GMT"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"books\": {\n        \"id\": 5,\n        \"author_id\": 7,\n        \"title\": \"Garis Waktu\",\n        \"slug\": \"garis-waktu\",\n        \"img\": \"IhXENVWusF7TP0Gnnj3ImLD4ZQMDZY5h3gYhwUJx.jpg\",\n        \"content\": \"Buku Fiersa Besari yang tidak kalah menarik adalah buku garis waktu. Buku ini ditulis berdasarkan rangkuman kisah penulis selama 4 tahun loh. Isi bukunya menceritakan bagaimana rasanya berjumlah, kemudian merasakan jatuh cinta dengan pujaan hati.\\n\\nDi bab selanjutnya juga akan diulas bagaimana rasa kecewa akan cinta yang dielu-elukan. Karena berbicara cinta memang tidak seperti mencicip madu yang manisnya keterusan. Cinta itu memang ada pahit, asin, asem dan sepahit-pahitnya rasa pahit. DImana pahitnya sampai membuat seseorang melakukan hal-hal bodoh dan membayakan nyawanya.\\n\\nNah buku Fiersa Besari pun juga menceritakan tentang bagaimana rasanya patah hati dan cara bisa merelakan apa yang dimilikinya. Memang tidaklah mudah merelakan sesuatu yang sudah menjadi bagian hidup untuk orang lain. Sebelum akhirnya memutuskan untuk menjadikan sebuah kenangan dan ingatan saja.\",\n        \"page\": 60,\n        \"created_at\": \"2021-10-07T07:11:17.000000Z\",\n        \"updated_at\": \"2021-10-07T07:11:17.000000Z\",\n        \"author\": {\n            \"id\": 7,\n            \"name\": \"Fiersa Besari\",\n            \"slug\": \"fiersa-besari\",\n            \"created_at\": \"2021-10-07T06:56:04.000000Z\",\n            \"updated_at\": \"2021-10-07T06:56:04.000000Z\"\n        }\n    }\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
